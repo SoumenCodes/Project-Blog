@@ -10,6 +10,9 @@ import AuthLayout from "./components/AuthLayout.jsx";
 import Login from "./pages/Login.jsx";
 import Signup from "./pages/Signup.jsx";
 import AllPosts from "./pages/AllPosts.jsx";
+import AddPost from "./pages/AddPost.jsx";
+import EditPost from "./pages/EditPost.jsx";
+import Post from "./pages/Post.jsx";
 
 const router = createBrowserRouter([
   {
@@ -46,14 +49,38 @@ const router = createBrowserRouter([
           </AuthLayout>
         ),
       },
+      {
+        path: "/addpost",
+        element: (
+          <AuthLayout authentication={true}>
+            <AddPost />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/editpost/:slug",
+        element: (
+          <AuthLayout authentication={true}>
+            <EditPost />
+          </AuthLayout>
+        ),
+      },
+      {
+        path: "/post/:slug",
+        element: (
+          <AuthLayout authentication={true}>
+            <Post />
+          </AuthLayout>
+        ),
+      },
     ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Provider store={store} />
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
